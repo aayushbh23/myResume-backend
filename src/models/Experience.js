@@ -18,4 +18,4 @@ const ExperienceSchema = new mongoose.Schema(
 );
 
 
-export default mongoose.model('Experience', ExperienceSchema);
+export default mongoose.model('Experience', ExperienceSchema, 'experience');

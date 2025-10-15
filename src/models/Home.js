@@ -18,4 +18,4 @@ const HomeSchema = new mongoose.Schema(
 );
 
 
-export default mongoose.model('Home', HomeSchema);
+export default mongoose.model('Home', HomeSchema, 'home');
