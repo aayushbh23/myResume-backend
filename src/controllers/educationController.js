@@ -1,14 +1,14 @@
-import Skills from '../models/Skills.js';
+import Education from '../models/Education.js';
 import { validationResult } from 'express-validator';
 import { asyncHandler } from '../middleware/asyncHandler.js';
 import { buildQueryOptions } from '../utils/buildQueryOptions.js';
 
 
-export const listSkills = asyncHandler(async (req, res) => {
+export const listEducation = asyncHandler(async (req, res) => {
     const { sort, skip, limit, page } = buildQueryOptions(req);
     const [items, total] = await Promise.all([
-        Skills.find().sort(sort).skip(skip).limit(limit),
-        Skills.countDocuments()
+        Education.find().sort(sort).skip(skip).limit(limit),
+        Education.countDocuments()
     ]);
     res.json({
         success: true,
@@ -19,12 +19,12 @@ export const listSkills = asyncHandler(async (req, res) => {
 });
 
 
-export const createSkills = asyncHandler(async (req, res) => {
+export const createEducation = asyncHandler(async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) return res.status(400).json({
         success: false, errors: errors.array()
     });
-    const created = await Skills.create(req.body);
+    const created = await Education.create(req.body);
     res.status(201).json({
         success: true,
         data: created
@@ -32,11 +32,11 @@ export const createSkills = asyncHandler(async (req, res) => {
 });
 
 
-export const getSkills = asyncHandler(async (req, res) => {
-    const doc = await Skills.findById(req.params.id);
+export const getEducation = asyncHandler(async (req, res) => {
+    const doc = await Education.findById(req.params.id);
     if (!doc) return res.status(404).json({
         success: false,
-        error: 'Skills not found'
+        error: 'Education not found'
     });
     res.json({
         success: true,
@@ -45,19 +45,19 @@ export const getSkills = asyncHandler(async (req, res) => {
 });
 
 
-export const updateSkills = asyncHandler(async (req, res) => {
+export const updateEducation = asyncHandler(async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) return res.status(400).json({
         success: false,
         errors: errors.array()
     });
-    const updated = await Skills.findByIdAndUpdate(req.params.id, req.body, {
+    const updated = await Education.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
         runValidators: true
     });
     if (!updated) return res.status(404).json({
         success: false,
-        error: 'Skills not found'
+        error: 'Education not found'
     });
     res.json({
         success: true,
@@ -66,11 +66,11 @@ export const updateSkills = asyncHandler(async (req, res) => {
 });
 
 
-export const deleteSkills = asyncHandler(async (req, res) => {
-    const deleted = await Skills.findByIdAndDelete(req.params.id);
+export const deleteEducation = asyncHandler(async (req, res) => {
+    const deleted = await Education.findByIdAndDelete(req.params.id);
     if (!deleted) return res.status(404).json({
         success: false,
-        error: 'Skills not found'
+        error: 'Education not found'
     });
     res.status(204).send();
 });
