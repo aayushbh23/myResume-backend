@@ -4,13 +4,13 @@ import app from './app.js';
 
 dotenv.config();
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 
 (async () => {
 try {
     await connectDB(process.env.MONGODB_URI);
-    app.listen(PORT, () => {
-        console.log(`myResume API listening on http://localhost:${PORT}`);
+    app.listen(PORT, '0.0.0.0', () => {
+        console.log(`myResume API listening on:${PORT}`);
     });
     } catch (err) {
         console.error('Failed to start server:', err);

@@ -11,7 +11,7 @@
         "seed": "node src/seed/seed.js"
     },
     "engines": {
-        "node": ">=18.0.0"
+        "node": ">=18.0.0 <19"
     },
     "dependencies": {
         "cors": "^2.8.5",
